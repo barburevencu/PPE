@@ -31,7 +31,7 @@ durations = []
 t0 = exp.clock.time
 for square in squares:
     if not square.is_preloaded:
-        print("Preloading function not implemneted correctly.")
+        print("Preloading function not implemented correctly.")
     stims = [fixation, square] 
     present_for(stims, 500)
     t1 = exp.clock.time

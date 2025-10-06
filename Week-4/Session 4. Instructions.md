@@ -1,4 +1,4 @@
-# Session 3: Expyriment stimuli (what, how, where)
+# Session 4: Expyriment timing (when)
 
 ## Table of Contents
 - [Exercise 1: Double buffer illustration](#exercise-1-double-buffer)
@@ -49,5 +49,5 @@ if exp.keyboard.check(K_SPACE): # inside the loop
 - Pay attention to how you implement ISI = 0
 - Since a frame is 16.67 ms, it's best to use frames instead of times. Have the `present_for` function **take as input the number of frames** and convert to time in milliseconds internally. This will help you avoid rounding errors or passing in meaningless commands (such as present for 12 milliseconds).
 - As we’ve seen with canvases, `expyriment` lets you plot stimuli onto the surface of other stimuli. You can add tags by plotting small circles on the surface of the big ones, but be mindful of two aspects:
-    -  The big circles must be preloaded after the plotting of the tags
+    - The big circles must be preloaded after the plotting of the tags
     - The positions of the tags must be set relative to the circles on top of which they’re plotted (easier than it sounds)
