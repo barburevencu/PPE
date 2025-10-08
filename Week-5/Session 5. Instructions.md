@@ -3,7 +3,6 @@
 ## Table of Contents
 - [Exercise 1: Find your blind spot](#exercise-1-blind-spot)
 - [Exercise 2: Recording data](#exercise-2-recording-data)
-- [Exercise 3: First experiment](#exercise-3-stroop)
 
 ## Exercise 1: Blind spot
 Open `blindspot.py` and modify it as follows:
@@ -29,13 +28,3 @@ Modify `blindspot.py` to collect the following data **on each key press**:
 - last key pressed
 - the current radius of the circle
 - the current coordinates of the circle
-
-## Exercise 3: Stroop
-Program a Stroop experiment with 20 trials divided into 2 blocks:
-
-- participants' task is to decide via their keyboard whether word meaning and text color match (colors: red, blue, green, orange)
-- each trial should have the following structure: fixation (500 ms) $\rightarrow$ color word (self-paced until participant answers) $\rightarrow$ feedback (up to you how you implement this)
-- for each trial, randomly choose a trial type (match/mismatch), one color word and one color for the font: use Python's [random](https://docs.python.org/3/library/random.html) or [expyriment.design.randomize](https://docs.expyriment.org/expyriment.design.randomize.html) modules
-- before each block, present instructions to the participant
-
-**Important**: The output datafile must contain info on trial block, trial number, trial type, word meaning, text color, RTs, and accuracy.
