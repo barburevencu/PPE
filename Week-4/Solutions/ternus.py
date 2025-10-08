@@ -1,6 +1,6 @@
 from expyriment import design, control, stimuli
 from expyriment.misc.constants import C_WHITE, C_BLACK, C_RED, C_GREEN, C_BLUE, C_YELLOW, K_SPACE
-from drawing_functions import *
+from drawing_functions import load, present_for
 
 ALIAS = 10
 RADIUS = 50; DISTANCE = RADIUS * 3; SPREAD = RADIUS * 9
@@ -17,7 +17,7 @@ def add_tags(circles, tag_radius):
 
 def run_trial(circle_frames=12, ISI=0, tags=False):
     circles = make_circles()
-    if tags: 
+    if tags:
         add_tags(circles, tag_radius=RADIUS // 5)
     load(circles)
 

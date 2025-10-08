@@ -1,11 +1,12 @@
 from expyriment import design, control, stimuli
 import random
+import math
 
 FPS  = 60
 MSPF = 1000 / FPS # ms per frame
 
 def to_frames(t):
-    return round(t / MSPF)
+    return math.ceil(t / MSPF)
 
 def to_time(num_frames):
     return num_frames * MSPF
@@ -22,7 +23,7 @@ def timed_draw(exp, stims):
         stim.present(clear=False, update=False)
     exp.screen.update()
     
-    elapsed = exp.clock.time - t0 # Time after drawing
+    elapsed = exp.clock.time - t0 # Time it took to execute and present drawn stims
     return elapsed
 
 def present_for(exp, stims, num_frames):
@@ -42,12 +43,11 @@ if __name__ == "__main__":
     control.initialize(exp)
 
     fixation = stimuli.FixCross()
-    load(fixation)
 
     n_squares = 20
     positions = [(random.randint(-300, 300), random.randint(-300, 300)) for _ in range(n_squares)]
     squares = [stimuli.Rectangle(size=(50, 50), position = pos) for pos in positions]
-    load(squares)
+    load([fixation] + squares)
 
     durations = []
     t0 = exp.clock.time
@@ -57,7 +57,7 @@ if __name__ == "__main__":
             print("Preloading function not implemented correctly.")
 
         stims = [fixation, square] 
-        present_for(stims, num_frames=30)
+        present_for(exp, stims, num_frames=30)
         t1 = exp.clock.time
         durations.append(t1 - t0)
         t0 = t1
