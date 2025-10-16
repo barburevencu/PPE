@@ -1,0 +1,17 @@
+# --- Python cache and build files ---
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# --- macOS system files ---
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# --- Logs and temp files ---
+*.log
+*.tmp
