@@ -1,0 +1,11 @@
+#Expyriment 1.0.0 (Python 3.11.6), .xpd-file, coding: UTF-8
+#date: Sun Nov 02 2025 14:59:34
+#--EXPERIMENT INFO
+#e mainfile: stroop_balanced.py
+#e sha1: f6870d
+#e modules: helpers.py (30e471), constants.py (cd830d)
+#e Experiment: Stroop
+#e no between subject factors
+#--SUBJECT INFO
+#s id: 1
+subject_id,block_id,trial_id,trial_type,word,color,RT,correct
