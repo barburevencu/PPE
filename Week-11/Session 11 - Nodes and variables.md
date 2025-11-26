@@ -34,6 +34,8 @@ Sometimes, it is not obvious to find the behavior that you want to implement. In
 
 ### Exercise (~15 minutes)
 
+<!-- NB : add starting file to do the exercise from -->
+
 Ok, let's update our letter detection task. Now, the letter should be presented in either upper and lower case throughout the trials. Your job will be to only display the letter for a single second, and save the expected key as well as the actual response.
 
 A possible solution [here](./scripts/letter_detection_with_params.html).
