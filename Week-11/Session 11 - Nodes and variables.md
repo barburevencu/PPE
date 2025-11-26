@@ -23,6 +23,7 @@ At first sight, nothing fits what we want. But we can have a look at [the parame
 Here, you should spot `post_trial_gap`, which seems to do what we want. We can use it to replace the blank screen trial. There seems to be nothing we can do about fixation cross, however: it must remain a standalone trial.
 
 ![Documentation Sample](./images/post_trial_gap_documentation.png)
+
 The details of the parameter we are interested in.
 
 ### How much should we use the documentation?
@@ -83,7 +84,7 @@ Can you now simplify our last task? A possible solution [here](./scripts/letter_
 
 #### Part 2
 
-If you run my solution (and perhaps yours), you may notice that identical trials can be presented twice in a row. Whether or not allowing this is good practice is still debated. Still, jsPsych provides you with a method to do that. Try to look up how to do it (hint: look into the `jsPsych.randomization` module). 
+If you run my solution (and perhaps yours), you may notice that identical trials can be presented twice in a row. Whether or not allowing this is good practice is still debated. Still, jsPsych provides you with a method to do that. Try to look up how to do it (hint: look into the `jsPsych.randomization` module).
 
 <!-- ## Providing feedback
 
