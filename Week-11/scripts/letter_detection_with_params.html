@@ -13,22 +13,23 @@
     const KEYS = ['F', 'J'];
     const BLANK_DURATION = 50 // ms;
 
-    function createKeyPressTrial(targetKey, keys, blankDuration){
-      let blankTrial = {
-        type: jsPsychHtmlKeyboardResponse,
-        stimulus: "",
-        trial_duration: blankDuration,
-        choices: [],
-      };
-
+    // We add a lower case factor in our design
+    function createKeyPressTrial(targetKey, lowerCase, keys, blankDuration){
       let stimulusDisplayTrial = {
         type: jsPsychHtmlKeyboardResponse,
-        stimulus: targetKey,
+        // Equivalent to if x then y else z
+        stimulus: lowerCase ? targetKey.toLocaleLowerCase() : targetKey.toUpperCase();
         choices: keys,
+        post_trial_gap: blankDuration,
+        stimulus_duration: 1000,
+        data: {
+          lowerCase: lowerCase,
+          targetKey: targetKey
+        }
       }
 
       return {
-        timeline:  [blankTrial, stimulusDisplayTrial]
+        timeline:  [stimulusDisplayTrial]
       }
     }
 
@@ -36,7 +37,10 @@
       let possibleTrials = [];
 
       for (let k = 0; k < keys.length; k += 1){
-        possibleTrials.push(createKeyPressTrial(keys[k], keys, blankDuration));
+        // We counter balance upper and lower case
+        for (let lowerCase of [true, false]){
+          possibleTrials.push(createKeyPressTrial(keys[k], lowerCase, keys, blankDuration));
+        }
       }
 
       return jsPsych.randomization.repeat(possibleTrials, trialsPerKey);
@@ -71,8 +75,6 @@
     for (let trial of trials){
       timeline.push(trial);
     }
-
-    console.log(timeline.length)
 
     jsPsych.run(timeline);
   </script>

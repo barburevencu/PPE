@@ -12,35 +12,6 @@
     const NUMBER_OF_TRIALS_PER_KEY = 10;
     const KEYS = ['F', 'J'];
     const BLANK_DURATION = 50 // ms;
-
-    function createKeyPressTrial(targetKey, keys, blankDuration){
-      let blankTrial = {
-        type: jsPsychHtmlKeyboardResponse,
-        stimulus: "",
-        trial_duration: blankDuration,
-        choices: [],
-      };
-
-      let stimulusDisplayTrial = {
-        type: jsPsychHtmlKeyboardResponse,
-        stimulus: targetKey,
-        choices: keys,
-      }
-
-      return {
-        timeline:  [blankTrial, stimulusDisplayTrial]
-      }
-    }
-
-    function createShuffledListOfTrials(keys, trialsPerKey, blankDuration){
-      let possibleTrials = [];
-
-      for (let k = 0; k < keys.length; k += 1){
-        possibleTrials.push(createKeyPressTrial(keys[k], keys, blankDuration));
-      }
-
-      return jsPsych.randomization.repeat(possibleTrials, trialsPerKey);
-    }
   </script>
 
   <script type="text/javascript">
@@ -63,16 +34,28 @@
         `
     };
 
-    let trials = createShuffledListOfTrials(KEYS, NUMBER_OF_TRIALS_PER_KEY, BLANK_DURATION);
-
     let timeline = [helloTrial];
 
-    // Because we nested blank screen after the trial, even after order randomiztion the two will be in succession.
-    for (let trial of trials){
-      timeline.push(trial);
+    let stimulusDisplayTrial = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: jsPsych.timelineVariable("targetKey"),
+    };
+
+    let targetKeyVariableList = [];
+    for (let key of KEYS){
+      targetKeyVariableList.push({targetKey: key})
     }
 
-    console.log(timeline.length)
+    timeline.push({
+      timeline:  [stimulusDisplayTrial],
+      timeline_variables: targetKeyVariableList,
+      // You can put common parameters here
+      choices: KEYS,
+      post_trial_gap: BLANK_DURATION,
+      // Randomize order and repeat
+      randomize_order: true,
+      repetitions: NUMBER_OF_TRIALS_PER_KEY,
+    })
 
     jsPsych.run(timeline);
   </script>
