@@ -12,12 +12,13 @@
     const NUMBER_OF_TRIALS_PER_KEY = 10;
     const KEYS = ['F', 'J'];
     const BLANK_DURATION = 50 // ms;
+    const CROSS_DURATION = 250 // ms;
 
-    function createKeyPressTrial(targetKey, keys, blankDuration){
-      let blankTrial = {
+    function createKeyPressTrial(targetKey, keys, crossDuration, blankDuration){
+      let fixationCrossTrial = {
         type: jsPsychHtmlKeyboardResponse,
-        stimulus: "",
-        trial_duration: blankDuration,
+        stimulus: "+",
+        trial_duration: crossDuration,
         choices: [],
       };
 
@@ -25,18 +26,25 @@
         type: jsPsychHtmlKeyboardResponse,
         stimulus: targetKey,
         choices: keys,
-      }
+      };
+
+      let blankTrial = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: "",
+        trial_duration: blankDuration,
+        choices: [],
+      };
 
       return {
-        timeline:  [blankTrial, stimulusDisplayTrial]
+        timeline:  [fixationCrossTrial, stimulusDisplayTrial, blankTrial]
       }
     }
 
-    function createShuffledListOfTrials(keys, trialsPerKey, blankDuration){
+    function createShuffledListOfTrials(keys, trialsPerKey, crossDuration, blankDuration){
       let possibleTrials = [];
 
       for (let k = 0; k < keys.length; k += 1){
-        possibleTrials.push(createKeyPressTrial(keys[k], keys, blankDuration));
+        possibleTrials.push(createKeyPressTrial(keys[k], keys, crossDuration, blankDuration));
       }
 
       return jsPsych.randomization.repeat(possibleTrials, trialsPerKey);
@@ -63,7 +71,7 @@
         `
     };
 
-    let trials = createShuffledListOfTrials(KEYS, NUMBER_OF_TRIALS_PER_KEY, BLANK_DURATION);
+    let trials = createShuffledListOfTrials(KEYS, NUMBER_OF_TRIALS_PER_KEY, CROSS_DURATION, BLANK_DURATION);
 
     let timeline = [helloTrial];
 
