@@ -82,7 +82,8 @@ let timelineWithParameters = {
 Can you now simplify our last task? A possible solution [here](./scripts/letter_detection_with_timeline_variables.html).
 
 #### Part 2
-If you run my solution (and perhaps yours), you may notice something wrong with the succession of trials: hopefully, we've previously seen how to fix it! Try to do it, maybe by breaking down a bit the existing simplicity we have !
+
+If you run my solution (and perhaps yours), you may notice that identical trials can be presented twice in a row. Whether or not allowing this is good practice is still debated. Still, jsPsych provides you with a method to do that. Try to look up how to do it (hint: look into the `jsPsych.randomization` module). 
 
 <!-- ## Providing feedback
 
